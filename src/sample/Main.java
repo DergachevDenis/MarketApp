@@ -13,8 +13,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("view/AuthorizationWindow.fxml"));
         primaryStage.setTitle("MarketApp");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.getIcons().add(new Image("file:"));
+        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.getIcons().add(new Image("file:icon_shop.png"));
         primaryStage.show();
     }
 
