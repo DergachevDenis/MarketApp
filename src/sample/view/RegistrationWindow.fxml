@@ -49,7 +49,7 @@
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-                <Label contentDisplay="CENTER" layoutX="211.0" text="Регистрация" textAlignment="CENTER">
+                <Label contentDisplay="CENTER" layoutX="185.0" layoutY="-1.0" text="Регистрация" textAlignment="CENTER" AnchorPane.leftAnchor="185.0">
                     <font>
                         <Font name="MicraDi" size="30.0" />
                     </font>
@@ -75,42 +75,37 @@
                         <Font size="20.0" />
                     </font>
                 </TextField>
-                <Button fx:id="buttonRegistration" defaultButton="true" layoutX="203.0" layoutY="448.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="188.0" text="Зарегестрироваться" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0">
+            <TextField fx:id="textFieldLastName" layoutX="138.0" layoutY="100.0" prefHeight="45.0" prefWidth="325.0" promptText="Фамилия" AnchorPane.leftAnchor="138.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="textFieldLogin" layoutX="138.0" layoutY="150.0" prefHeight="45.0" prefWidth="325.0" promptText="Придумайте логин " AnchorPane.leftAnchor="138.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="textFieldPassword" layoutX="138.0" layoutY="200.0" prefHeight="45.0" prefWidth="325.0" promptText="Придумайте пароль" AnchorPane.leftAnchor="138.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </PasswordField>
+            <PasswordField fx:id="textFieldReplyPassword" layoutX="138.0" layoutY="250.0" prefHeight="45.0" prefWidth="325.0" promptText="Повторите пароль" AnchorPane.leftAnchor="138.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </PasswordField>
+                <TextField fx:id="textFieldEmail" layoutX="138.0" layoutY="300.0" prefHeight="45.0" prefWidth="325.0" promptText="Почтовый ящик">
                     <font>
-                        <Font size="17.0" />
+                        <Font size="20.0" />
                     </font>
-                </Button>
-            <TextField fx:id="textFieldLastName" layoutX="138.0" layoutY="100.0" prefHeight="45.0" prefWidth="325.0" promptText="Фамилия">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="textFieldLogin" layoutX="138.0" layoutY="150.0" prefHeight="45.0" prefWidth="325.0" promptText="Придумайте логин ">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </TextField>
-            <PasswordField fx:id="textFieldPassword" layoutX="138.0" layoutY="200.0" prefHeight="45.0" prefWidth="325.0" promptText="Придумайте пароль">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </PasswordField>
-            <PasswordField fx:id="textFieldReplyPassword" layoutX="138.0" layoutY="250.0" prefHeight="45.0" prefWidth="325.0" promptText="Повторите пароль">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </PasswordField>
-            <TextField fx:id="textFieldEmail" layoutX="138.0" layoutY="300.0" prefHeight="45.0" prefWidth="325.0" promptText="Электронный адрес">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </TextField>
-            <CheckBox fx:id="checkBoxRememberCard" layoutX="138.0" layoutY="350.0" mnemonicParsing="false" text="Указать номер карты">
+                </TextField>
+            <CheckBox fx:id="checkBoxRememberCard" layoutX="138.0" layoutY="350.0" mnemonicParsing="false" text="Указать номер карты" AnchorPane.leftAnchor="138.0">
                <font>
                   <Font size="20.0" />
                </font>
             </CheckBox>
-            <TextField fx:id="textFieldNumCard1" layoutX="138.0" layoutY="385.0" prefHeight="45.0" prefWidth="70.0" promptText="1234">
+            <TextField fx:id="textFieldNumCard1" layoutX="138.0" layoutY="385.0" prefHeight="45.0" prefWidth="75.0" promptText="1234" AnchorPane.leftAnchor="138.0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -130,6 +125,13 @@
                   <Font size="20.0" />
                </font>
             </TextField>
+
+
+                <Button fx:id="buttonRegistration" defaultButton="true" layoutX="203.0" layoutY="448.0" mnemonicParsing="false" onAction="#registrationUser" prefHeight="38.0" prefWidth="188.0" text="Зарегестрироваться" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="203.0">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Button>
             </children>
         </AnchorPane>
     </center>
