@@ -14,12 +14,11 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@StyleApp.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AuthorizationWindowController">
    <top>
       <HBox prefHeight="100.0" prefWidth="600.0" styleClass="background-Header" stylesheets="@StyleApp.css" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="TOP_LEFT" text="Shop" textAlignment="CENTER">
+            <Label text="Shop" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
                <font>
                   <Font name="MicraDi" size="46.0" />
                </font>
@@ -49,7 +48,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label contentDisplay="CENTER" layoutX="171.0" layoutY="14.0" text="Авторизация" textAlignment="CENTER">
+            <Label contentDisplay="CENTER" layoutX="211.0" text="Авторизация" textAlignment="CENTER">
                <font>
                   <Font name="MicraDi" size="30.0" />
                </font>
@@ -75,12 +74,12 @@
                   <Font size="20.0" />
                </font>
             </TextField>
-            <Button defaultButton="true" layoutX="137.0" layoutY="166.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" text="Войти" textAlignment="CENTER">
+            <Button fx:id="buttonAuthorization" defaultButton="true" layoutX="137.0" layoutY="166.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" text="Войти" textAlignment="CENTER">
                <font>
                   <Font size="17.0" />
                </font>
             </Button>
-            <Button layoutX="241.0" layoutY="166.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="188.0" text="Зарегестрироваться" textAlignment="CENTER">
+            <Button fx:id="buttonRegistration" layoutX="241.0" layoutY="166.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="188.0" text="Зарегестрироваться" textAlignment="CENTER">
                <font>
                   <Font size="17.0" />
                </font>
