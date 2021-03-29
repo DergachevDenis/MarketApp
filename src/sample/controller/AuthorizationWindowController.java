@@ -35,6 +35,10 @@ public class AuthorizationWindowController {
             buttonRegistration.getScene().getWindow().hide();
             main.openNewScene("/sample/view/RegistrationWindow.fxml");
         });
+        buttonAuthorization.setOnAction(event -> {
+            buttonAuthorization.getScene().getWindow().hide();
+            main.openNewScene("/sample/view/MainWindow.fxml");
+        });
     }
 
 

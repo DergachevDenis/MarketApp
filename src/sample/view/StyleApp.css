@@ -6,3 +6,12 @@
     -fx-background-color: #696969;
 }
 
+.background-buttonProfile{
+    -fx-background-image: url(images/iconfinder_user_1287507.png);
+    background-color:#696969;
+}
+.background-hyperLink{
+    -fx-border-color: #696969;
+}
+
+

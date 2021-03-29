@@ -48,7 +48,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label contentDisplay="CENTER" layoutX="211.0" text="Авторизация" textAlignment="CENTER">
+            <Label contentDisplay="CENTER" layoutX="171.0" layoutY="-1.0" text="Авторизация" textAlignment="CENTER" AnchorPane.leftAnchor="171.0" AnchorPane.topAnchor="-1.0">
                <font>
                   <Font name="MicraDi" size="30.0" />
                </font>
