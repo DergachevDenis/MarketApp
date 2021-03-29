@@ -58,7 +58,9 @@ public abstract class Product implements Serializable {
         System.out.println("Цена: " + getPrice());
         System.out.println("Производитель: " + getManufacturer());
 
-        return "";
+        return "Название товара: " + getName() + "\n" +
+                "Цена: " + getPrice() + "\n" +
+                "Производитель: " + getManufacturer() + "\n";
 
     }
 }

@@ -32,6 +32,7 @@ public abstract class Food extends Product {
         super.toString();
         System.out.println("Состав: "+getComposition());
         System.out.println("Срок годности: "+getShelfLife());
-        return"";
+        return super.toString()+ "Состав: " + getComposition() + "\n" +
+                "Срок годности: " + getShelfLife() + "\n";
     }
 }

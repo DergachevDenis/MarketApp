@@ -34,6 +34,8 @@ public class Main extends Application {
         Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene((new Scene(root)));
+        stage.setTitle("MarketApp");
+        stage.getIcons().add(new Image("file:icon_shop.png"));
         stage.showAndWait();
     }
 

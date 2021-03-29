@@ -9,12 +9,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import sample.Main;
 import sample.animation.Shake;
+import sample.model.Sesion;
 import sample.model.User;
 import sample.storage.UserDB;
 
 public class RegistrationWindowController {
     UserDB userDB = new UserDB();
+    Main main = new Main();
 
     @FXML
     private ResourceBundle resources;
@@ -85,8 +88,11 @@ public class RegistrationWindowController {
             } else {
                 newUser = new User(login, password, firstName, lastName, email);
             }
+            Sesion.setSesionUser(newUser);
             userDB.insertNewUser(newUser);
             System.out.println("Пользователь создан");
+            main.openNewScene("/sample/view/MainWindow.fxml");
+            buttonRegistration.getScene().getWindow().hide();
         }
 
     }

@@ -74,6 +74,11 @@
                   <Font size="20.0" />
                </font>
             </TextField>
+            <PasswordField fx:id="textFieldPassword" layoutX="138.0" layoutY="105.0" prefHeight="45.0" prefWidth="325.0" promptText="Password">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </PasswordField>
             <Button fx:id="buttonAuthorization" defaultButton="true" layoutX="137.0" layoutY="166.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" text="Войти" textAlignment="CENTER">
                <font>
                   <Font size="17.0" />
@@ -84,11 +89,6 @@
                   <Font size="17.0" />
                </font>
             </Button>
-            <PasswordField fx:id="textFieldPassword" layoutX="138.0" layoutY="105.0" prefHeight="45.0" prefWidth="325.0" promptText="Password">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </PasswordField>
          </children>
       </AnchorPane>
    </center>

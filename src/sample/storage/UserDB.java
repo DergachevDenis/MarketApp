@@ -36,12 +36,12 @@ public class UserDB {
         }
     }
 
-    public boolean checkLogin(String login) { // Проверяем логин
+    public boolean checkLogin(String loginDB) { // Проверяем логин
         boolean flag = false;
         String sqlCommand = "SELECT EXISTS (SELECT login FROM users WHERE login = ?)";
         try {
             PreparedStatement prStatement = getDbConnection().prepareStatement(sqlCommand);
-            prStatement.setString(1, login);
+            prStatement.setString(1, loginDB);
             ResultSet resultSet = prStatement.executeQuery();
             while (resultSet.next()) {
                 flag = resultSet.getBoolean(1);
@@ -52,6 +52,39 @@ public class UserDB {
             closeConnection();
         }
         return flag;
+    }
+
+    public User getUser(String loginDB) { // Получаем пользователя из базы данных
+        User user = null;
+        String sqlCommand = "SELECT *  FROM users WHERE login = ?";
+        try {
+            PreparedStatement prStatement = getDbConnection().prepareStatement(sqlCommand);
+            prStatement.setString(1, loginDB);
+            ResultSet resultSet = prStatement.executeQuery();
+            while (resultSet.next()) {
+                String login = resultSet.getString("login");
+                String password = resultSet.getString("password");
+                String name = resultSet.getString("name");
+                String lastname = resultSet.getString("lastname");
+                String email = resultSet.getString("email");
+                boolean bollCard = resultSet.getBoolean("card");
+                String numberCard = null;
+                if (bollCard) {
+                    numberCard = resultSet.getString("numberCard");
+                }
+                if (bollCard) {
+                    user = new User(login, password, name, lastname, email, numberCard);
+                } else {
+                    user = new User(login, password, name, lastname, email);
+                }
+
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return user;
     }
 
     public void insertNewUser(User newUser) {

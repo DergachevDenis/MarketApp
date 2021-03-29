@@ -34,6 +34,7 @@ public abstract class Electronics extends Product implements Serializable {
         super.toString();
         System.out.println("Мощность: "+getPower());
         System.out.println("Вольтаж: "+getVoltage());
-        return "";
+        return super.toString()+ "Мощность: " + getPower() + "\n" +
+                "Вольтаж: " + getVoltage() + "\n";
     }
 }

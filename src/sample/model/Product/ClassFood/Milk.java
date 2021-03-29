@@ -4,9 +4,10 @@ import sample.model.Product.Food;
 
 public class Milk extends Food {
     private double volume;
+
     public Milk(String name, String price, String manufacturer, String composition, String shelfLife, double volume) {
         super(name, price, manufacturer, composition, shelfLife);
-        this.volume =volume;
+        this.volume = volume;
     }
 
     public double getWeight() {
@@ -20,8 +21,8 @@ public class Milk extends Food {
     @Override
     public String toString() {
         super.toString();
-        System.out.println("Обьем: "+volume);
-        return"";
+        System.out.println("Обьем: " + volume);
+        return super.toString() + "Обьем: " + volume;
     }
 
 }

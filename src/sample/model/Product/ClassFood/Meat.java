@@ -22,7 +22,7 @@ public class Meat extends Food {
     public String toString() {
         super.toString();
         System.out.println("Вес: "+weight);
-        return"";
+        return super.toString()+"Вес: " + weight;
     }
 
 }

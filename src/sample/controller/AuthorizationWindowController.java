@@ -8,9 +8,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import sample.Main;
+import sample.animation.Shake;
+import sample.model.Sesion;
+import sample.storage.UserDB;
 
 public class AuthorizationWindowController {
     Main main = new Main();
+    UserDB userDB = new UserDB();
     @FXML
     private ResourceBundle resources;
 
@@ -36,9 +40,50 @@ public class AuthorizationWindowController {
             main.openNewScene("/sample/view/RegistrationWindow.fxml");
         });
         buttonAuthorization.setOnAction(event -> {
-            buttonAuthorization.getScene().getWindow().hide();
-            main.openNewScene("/sample/view/MainWindow.fxml");
+            authorization();
         });
+    }
+
+    private void authorization() {
+        if (isInputValid()) {
+            String login = textFieldLogin.getText();
+            Sesion sesion = new Sesion(userDB.getUser(login));
+            main.openNewScene("/sample/view/MainWindow.fxml");
+            buttonAuthorization.getScene().getWindow().hide();
+        }
+    }
+
+    private boolean isInputValid() {
+        Shake shake;
+        boolean flag = true;
+        if (textFieldLogin.getText() == null || textFieldLogin.getText().trim().isEmpty()) {
+            shake = new Shake(textFieldLogin);
+            shake.playAnimation();
+            flag = false;
+        } else if (userDB.checkLogin(textFieldLogin.getText().trim())) {
+            if (textFieldPassword.getText() == null || textFieldPassword.getText().trim().isEmpty()) {
+                shake = new Shake((textFieldPassword));
+                shake.playAnimation();
+                flag = false;
+            } else if (userDB.getUser(textFieldLogin.getText()).getPassword().equals(textFieldPassword.getText().trim())) {
+                return flag;
+            } else {
+                textFieldLogin.setStyle("-fx-border-color: red");
+                textFieldLogin.clear();
+                textFieldPassword.setStyle("-fx-border-color: red");
+                textFieldPassword.clear();
+                textFieldLogin.setPromptText("Не правильный логин или пароль");
+                flag = false;
+            }
+        } else {
+            textFieldLogin.setStyle("-fx-border-color: red");
+            textFieldLogin.clear();
+            textFieldPassword.setStyle("-fx-border-color: red");
+            textFieldPassword.clear();
+            textFieldLogin.setPromptText("Не правильный логин или пароль");
+            flag = false;
+        }
+        return flag;
     }
 
 

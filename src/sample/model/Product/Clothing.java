@@ -31,8 +31,9 @@ public abstract class Clothing extends Product {
     @Override
     public String toString() {
         super.toString();
-        System.out.println("Размер: "+getSize());
-        System.out.println("Цвет: "+getColor());
-        return"";
+        System.out.println("Размер: " + getSize());
+        System.out.println("Цвет: " + getColor());
+        return super.toString()+ "Размер: " + getSize() + "\n" +
+                "Цвет: " + getColor() + "\n";
     }
 }

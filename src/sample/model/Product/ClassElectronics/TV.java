@@ -25,7 +25,7 @@ public class TV extends Electronics implements Serializable {
     public String toString() {
         super.toString();
         System.out.println("Диагональ: "+getDiagonal());
-        return "";
+        return super.toString()+"Диагональ: "+getDiagonal() + "\n";
 
     }
 }

@@ -21,7 +21,7 @@ public class Blender extends Electronics {
     @Override
     public String toString() {
         super.toString();
-        System.out.println("Скорость вращения: "+getSpeed());
-        return "";
+        System.out.println("Скорость вращения: " + getSpeed());
+        return super.toString() + "Скорость вращения: " + getSpeed() + "\n";
     }
 }
