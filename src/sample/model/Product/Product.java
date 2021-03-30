@@ -1,6 +1,9 @@
 package sample.model.Product;
 
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -39,18 +42,6 @@ public abstract class Product implements Serializable {
         this.manufacturer = manufacturer;
     }
 
-//    public void buy(Sesion sesion, Product product) {
-//        ArrayList<Product> listProduct = new ArrayList<Product>();
-//        listProduct.add(product);
-//        Order order = new Order(listProduct);
-//        order.buyDefaultCard(sesion);
-//    }
-//
-//    public void addBasket(Sesion sesion, Product product) {
-//        Basket basket = sesion.getBasket();
-//        basket.addProductInBasket(product);
-//        Menu.returnMainMenu(sesion);
-//    }
 
     @Override
     public String toString() {

@@ -55,6 +55,7 @@ public class ProductStorage {
 //    public static void main(String[] args) {
 //        ProductStorage productStorage = new ProductStorage();
 //        ArrayList<Product> productList = productStorage.getProductArrayList();
+////        ArrayList<Product> productList = new ArrayList<Product>();
 //        System.out.println(productList.size());
 //        TV tv = new TV("Samsung T500","124.56","Samsung","1000W",220,2.5);
 //        TV tv1 = new TV("Sony k33","456","Sony", "90W",225,9 );

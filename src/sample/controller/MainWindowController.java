@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.scene.control.Hyperlink;
+import sample.Main;
 import sample.model.Product.Clothing;
 import sample.model.Product.Electronics;
 import sample.model.Product.Food;
@@ -17,9 +18,9 @@ import sample.model.Sesion;
 import sample.storage.ProductStorage;
 
 
-
 public class MainWindowController {
 
+    Main main = new Main();
     ProductStorage productStorage = new ProductStorage();
     ArrayList<Product> listProduct = productStorage.getProductArrayList();
 
@@ -28,6 +29,9 @@ public class MainWindowController {
 
     @FXML
     private URL location;
+
+    @FXML
+    private Button buttonProfile;
 
     @FXML
     private Hyperlink labelProfile = new Hyperlink("");
@@ -76,24 +80,59 @@ public class MainWindowController {
                 clothing.getChildren().add(clothingProduct);
             }
         }
-        treeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showPersonDetails(newValue));
+
+        treeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showProductDetails(newValue));
+
+        labelProfile.setOnAction(event -> {
+            main.openNewScene("/sample/view/ProfileWindow.fxml");
+        });
+        buttonProfile.setOnAction(event -> {
+            main.openNewScene("/sample/view/ProfileWindow.fxml");
+        });
+        buttonBasket.setOnAction(event -> {
+            addBasket();
+        });
+
 
     }
 
-    private void showPersonDetails(TreeItem<String> string) {
-        for (Product product : listProduct){
-            if(product.getName().equals(string.getValue())){
+    private void showProductDetails(TreeItem<String> string) {
+        for (Product product : listProduct) {
+            if (product.getName().equals(string.getValue())) {
                 labelNameProduct.setText(product.getName());
                 labelNameProduct.setVisible(true);
                 textProduct.setText(product.toString());
                 textProduct.setVisible(true);
-                labelPriceProduct.setText(product.getPrice()+ "р.");
+                labelPriceProduct.setText(product.getPrice() + "р.");
                 labelPriceProduct.setVisible(true);
                 buttonBuy.setVisible(true);
                 buttonBasket.setVisible(true);
 
             }
+        }
+    }
 
+    @FXML
+    private void addBasket(){
+        TreeItem<String> selectedIndex = treeView.getSelectionModel().getSelectedItem();
+        if (!selectedIndex.getValue().isEmpty()){
+            for (Product product:listProduct){
+                if (product.getName().equals(selectedIndex.getValue())) {
+                    Sesion.addProductBasket(product);
+                    System.out.println("Продукт добавлен в корзину");
+                    System.out.println(Sesion.getProductBasket().size());
+                    break;
+                }
+            }
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(main.getPrimaryStage());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Product Selected");
+            alert.setHeaderText("No Product Selected");
+            alert.setContentText("Please select a Product in the table.");
+            alert.showAndWait();
         }
 
     }

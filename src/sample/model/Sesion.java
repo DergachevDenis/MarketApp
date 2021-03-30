@@ -2,13 +2,16 @@ package sample.model;
 
 //import Basket.Basket;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import sample.model.Product.Product;
+
 public class Sesion {
     private static User sesionUser = null;
-//    private Basket basket;
+    private static ObservableList<Product> productBasket = FXCollections.observableArrayList(); //Данные, в виде наблюдаемого списка адресатов
 
     public Sesion(User sesionUser) {
         this.sesionUser = sesionUser;
-//        this.basket =new Basket();
     }
 
     public static User getSesionUser() {
@@ -19,11 +22,11 @@ public class Sesion {
         Sesion.sesionUser = sesionUser;
     }
 
-//    public Basket getBasket() {
-//        return basket;
-//    }
-//
-//    public void setBasket(Basket basket) {
-//        this.basket = basket;
-//    }
+    public static void addProductBasket(Product product) {
+        productBasket.add(product);
+    }
+
+    public static ObservableList<Product> getProductBasket() {
+        return productBasket;
+    }
 }

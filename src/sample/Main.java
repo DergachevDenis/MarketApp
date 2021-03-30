@@ -11,6 +11,8 @@ import java.io.IOException;
 
 public class Main extends Application {
 
+    private Stage primaryStage;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("view/AuthorizationWindow.fxml"));
@@ -39,6 +41,9 @@ public class Main extends Application {
         stage.showAndWait();
     }
 
+    public Stage getPrimaryStage(){ //возвращает главную сцену
+        return primaryStage;
+    }
 
     public static void main(String[] args) {
         launch(args);

@@ -48,8 +48,9 @@ public class AuthorizationWindowController {
         if (isInputValid()) {
             String login = textFieldLogin.getText();
             Sesion sesion = new Sesion(userDB.getUser(login));
-            main.openNewScene("/sample/view/MainWindow.fxml");
             buttonAuthorization.getScene().getWindow().hide();
+            main.openNewScene("/sample/view/MainWindow.fxml");
+
         }
     }
 
