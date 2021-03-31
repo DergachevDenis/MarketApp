@@ -1,9 +1,9 @@
 package sample.controller;
 
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -15,7 +15,7 @@ import sample.model.Sesion;
 import sample.model.User;
 import sample.storage.UserDB;
 
-public class RegistrationWindowController {
+public class EditProfileWindowController {
     UserDB userDB = new UserDB();
     Main main = new Main();
 
@@ -30,9 +30,6 @@ public class RegistrationWindowController {
 
     @FXML
     private TextField textFieldLastName;
-
-    @FXML
-    private TextField textFieldLogin;
 
     @FXML
     private PasswordField textFieldPassword;
@@ -61,43 +58,62 @@ public class RegistrationWindowController {
     @FXML
     private Button buttonRegistration;
 
+    @FXML
+    void registrationUser(ActionEvent event) {
+
+    }
 
     @FXML
     void initialize() {
+        textFieldFirstName.setText(Sesion.getSesionUser().getName());
+        textFieldLastName.setText(Sesion.getSesionUser().getLastName());
+        textFieldPassword.setText(Sesion.getSesionUser().getPassword());
+        textFieldPassword.setPromptText("Повторите пароль");
+        textFieldEmail.setText(Sesion.getSesionUser().getEmail());
+        if (Sesion.getSesionUser().isCard()) {
+            checkBoxRememberCard.setSelected(true);
+            String numberCard = Sesion.getSesionUser().getNumberCard();
+            textFieldNumCard1.setText(numberCard.substring(0, 4));
+            textFieldNumCard2.setText(numberCard.substring(4, 8));
+            textFieldNumCard3.setText(numberCard.substring(8, 12));
+            textFieldNumCard4.setText(numberCard.substring(12, 16));
+        } else {
+            checkBoxRememberCard.setSelected(false);
+            textFieldNumCard1.setPromptText("1111");
+            textFieldNumCard2.setPromptText("1111");
+            textFieldNumCard3.setPromptText("1111");
+            textFieldNumCard4.setPromptText("1111");
+        }
 
-
+        buttonRegistration.setOnAction(event -> {
+            editUser();
+        });
     }
 
-    public void print() {
-        System.out.println(textFieldFirstName.getText());
-    }
-
-    public void registrationUser() { //Регистрация пользователя и переход в главное меню
-        User newUser;
+    public void editUser() { // изменение и переход в главное меню
         if (isInputValid()) {
-            String firstName = textFieldFirstName.getText().trim();
-            String lastName = textFieldLastName.getText().trim();
-            String login = textFieldLogin.getText().trim();
-            String password = textFieldPassword.getText().trim();
-            String email = textFieldEmail.getText().trim();
+            Sesion.getSesionUser().setName(textFieldFirstName.getText().trim());
+            Sesion.getSesionUser().setLastName(textFieldLastName.getText().trim());
+            Sesion.getSesionUser().setPassword(textFieldPassword.getText().trim());
+            Sesion.getSesionUser().setEmail(textFieldEmail.getText().trim());
             if (checkBoxRememberCard.isSelected()) {
                 StringBuilder stringBuilder = new StringBuilder(20);
                 String numberCard = stringBuilder.append(textFieldNumCard1.getText()).append(textFieldNumCard2.getText())
                         .append(textFieldNumCard3.getText()).append(textFieldNumCard4.getText()).toString();
-                newUser = new User(login, password, firstName, lastName, email, numberCard);
+                Sesion.getSesionUser().setCard(true);
+                Sesion.getSesionUser().setNumberCard(numberCard);
+
             } else {
-                newUser = new User(login, password, firstName, lastName, email);
+                Sesion.getSesionUser().setCard(false);
             }
-            Sesion.setSesionUser(newUser);
-            userDB.insertNewUser(newUser);
-            System.out.println("Пользователь создан");
-            main.openNewScene("/sample/view/MainWindow.fxml");
+            userDB.updateUser(Sesion.getSesionUser());
+            System.out.println("Пользователь изменён");
+//            main.openNewScene("/sample/view/ProfileWindow.fxml");
             buttonRegistration.getScene().getWindow().hide();
         }
-
     }
 
-    private boolean isInputValid() { //Проверка на соотвествие данных регистрации и переход в главное меню
+    private boolean isInputValid() { //Проверка на соотвествие данных
         Shake shake;
         boolean flag = true;
         if (textFieldFirstName.getText() == null || textFieldFirstName.getText().trim().isEmpty()) {
@@ -108,16 +124,6 @@ public class RegistrationWindowController {
         if (textFieldLastName.getText() == null || textFieldLastName.getText().trim().isEmpty()) {
             shake = new Shake(textFieldLastName);
             shake.playAnimation();
-            flag = false;
-        }
-        if (textFieldLogin.getText() == null || textFieldLogin.getText().trim().isEmpty()) {
-            shake = new Shake(textFieldLogin);
-            shake.playAnimation();
-            flag = false;
-        } else if (userDB.checkLogin(textFieldLogin.getText().trim())) {
-            textFieldLogin.setStyle("-fx-border-color: red");
-            textFieldLogin.clear();
-            textFieldLogin.setPromptText("Такой логин уже существует");
             flag = false;
         }
         if (textFieldPassword.getText() == null || textFieldPassword.getText().trim().isEmpty()) {
@@ -137,8 +143,7 @@ public class RegistrationWindowController {
             textFieldReplyPassword.clear();
             flag = false;
         }
-        if (textFieldEmail.getText() == null || textFieldEmail.getText().trim().isEmpty())
-        {
+        if (textFieldEmail.getText() == null || textFieldEmail.getText().trim().isEmpty()) {
             shake = new Shake(textFieldEmail);
             shake.playAnimation();
             flag = false;
@@ -156,9 +161,7 @@ public class RegistrationWindowController {
             }
 
         }
-
         return flag;
     }
 
 }
-

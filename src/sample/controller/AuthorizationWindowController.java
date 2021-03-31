@@ -35,16 +35,16 @@ public class AuthorizationWindowController {
 
     @FXML
     void initialize() {
-        buttonRegistration.setOnAction(event -> {
+        buttonRegistration.setOnAction(event -> {   // при нажатии на кнопку "Регистрация" переход на окно регистрации
             buttonRegistration.getScene().getWindow().hide();
             main.openNewScene("/sample/view/RegistrationWindow.fxml");
         });
-        buttonAuthorization.setOnAction(event -> {
+        buttonAuthorization.setOnAction(event -> { // при нажатии на кнопку "Войти"
             authorization();
         });
     }
 
-    private void authorization() {
+    private void authorization() {  //Проверка на соотвествие данных авторизации и переход в главное меню
         if (isInputValid()) {
             String login = textFieldLogin.getText();
             Sesion sesion = new Sesion(userDB.getUser(login));
@@ -54,7 +54,7 @@ public class AuthorizationWindowController {
         }
     }
 
-    private boolean isInputValid() {
+    private boolean isInputValid() { // Проверка на соответствие данных
         Shake shake;
         boolean flag = true;
         if (textFieldLogin.getText() == null || textFieldLogin.getText().trim().isEmpty()) {

@@ -9,11 +9,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import sample.Main;
 import sample.model.Product.Product;
 import sample.model.Sesion;
 
 public class ProfileWindowController {
-
+    Main main = new Main();
     @FXML
     private ResourceBundle resources;
 
@@ -41,11 +42,21 @@ public class ProfileWindowController {
     @FXML
     private Label numberCardLabel;
 
+    @FXML
+    private Button buttonEdit;
+
 
     @FXML
     void initialize() {
-        listView.setItems(Sesion.getProductBasket());
-        profileLabel.setText(Sesion.getSesionUser().getLogin());
+        initializeProfile();
+        buttonEdit.setOnAction(event -> {
+            main.openNewScene("/sample/view/EditProfileWindow.fxml");
+            initializeProfile();
+        });
+    }
+    public void initializeProfile(){
+        listView.setItems(Sesion.getProductBasket()); // Отображения товаров в корзине
+        profileLabel.setText(Sesion.getSesionUser().getLogin()); // Вывод информации о пользователе в текущей сессии
         firstNameLabel.setText(Sesion.getSesionUser().getName());
         lastNameLabel.setText(Sesion.getSesionUser().getLastName());
         emailLabel.setText(Sesion.getSesionUser().getEmail());

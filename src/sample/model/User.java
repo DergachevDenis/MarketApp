@@ -104,7 +104,7 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    private byte[] encode(String password) {
+    private byte[] encode(String password) { //дешифровка пароля
         byte[] bPassword = password.getBytes(StandardCharsets.UTF_8);
         byte[] bKey = this.key.getBytes(StandardCharsets.UTF_8);
 
@@ -115,7 +115,7 @@ public class User implements Serializable {
         return rezultPassword;
     }
 
-    private String decode (byte[] bPassword) {
+    private String decode (byte[] bPassword) { //шифровка пароля
         byte[] rezultPassword = new byte[bPassword.length];
         byte[] bKey = this.key.getBytes(StandardCharsets.UTF_8);
 

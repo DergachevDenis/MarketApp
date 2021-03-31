@@ -144,7 +144,7 @@
                         </GridPane>
                         <HBox layoutX="228.0" layoutY="259.0" spacing="5.0" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="49.0" text="Edit..." />
+                              <Button fx:id="buttonEdit" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Редактировать..." />
                            </children>
                         </HBox>
                      </children>

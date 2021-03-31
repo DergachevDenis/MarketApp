@@ -87,7 +87,7 @@ public class UserDB {
         return user;
     }
 
-    public void insertNewUser(User newUser) {
+    public void insertNewUser(User newUser) { //Создаём пользователя
         String sqlCommand = "INSERT INTO users (login, password, name, lastname, email, card, numberCard) VALUES (?,?,?,?,?,?,?) ";
         try {
             PreparedStatement prStatement = getDbConnection().prepareStatement(sqlCommand);
@@ -98,7 +98,7 @@ public class UserDB {
             prStatement.setString(5, newUser.getEmail());
             if (newUser.isCard()) {
                 prStatement.setInt(6, 1);
-                prStatement.setString(7, newUser.getPassword());
+                prStatement.setString(7, newUser.getNumberCard());
             } else {
                 prStatement.setInt(6, 0);
                 prStatement.setString(7, null);
@@ -112,7 +112,33 @@ public class UserDB {
         }
     }
 
+    public void updateUser(User user) {
+        String sqlCommand = "UPDATE users SET password = ?, name = ?, lastName = ?, email = ?, card = ?, numberCard = ? where login = ?";
+        try {
+            PreparedStatement prStatement = getDbConnection().prepareStatement(sqlCommand);
+            prStatement.setString(1, user.getPassword());
+            prStatement.setString(2, user.getName());
+            prStatement.setString(3, user.getLastName());
+            prStatement.setString(4, user.getEmail());
+            if (user.isCard()) {
+                prStatement.setInt(5, 1);
+                prStatement.setString(6, user.getNumberCard());
+            } else {
+                prStatement.setInt(5, 0);
+                prStatement.setString(6, null);
+            }
+            prStatement.setString(7, user.getLogin());
+            prStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+    }
 }
+
+
 
 
 

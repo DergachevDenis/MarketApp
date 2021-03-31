@@ -29,7 +29,7 @@ public class ProductStorage {
         this.productArrayList = productArrayList;
     }
 
-    protected ArrayList<Product> readProductList(){
+    protected ArrayList<Product> readProductList(){ // Считываем из файла товары в список
         ArrayList<Product> userArrayList = new ArrayList<Product>();
         try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(this.fileName)))
         {
@@ -41,7 +41,7 @@ public class ProductStorage {
         }
         return productArrayList;
     }
-    public void writeProductList(ArrayList<Product> productList){
+    public void writeProductList(ArrayList<Product> productList){ // Записываем товары из списка в файл
         try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(this.fileName)))
         {
             oos.writeObject(productList);

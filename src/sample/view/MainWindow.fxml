@@ -84,7 +84,7 @@
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonBasket" layoutX="354.0" layoutY="254.0" mnemonicParsing="false" onAction="#addBasket" text="В корзину" visible="false">
+                  <Button fx:id="buttonBasket" layoutX="354.0" layoutY="254.0" mnemonicParsing="false" text="В корзину" visible="false">
                      <font>
                         <Font size="15.0" />
                      </font>

@@ -7,7 +7,7 @@ import javafx.util.Duration;
 public class Shake {
     private TranslateTransition tt;
 
-    public Shake(Node node){
+    public Shake(Node node){   // анимация, когда пользоваетель оставил поля пустыми
         tt = new TranslateTransition(Duration.millis(70),node);
         tt.setFromX(0f);
         tt.setByX(10f);

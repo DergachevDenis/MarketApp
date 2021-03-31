@@ -57,11 +57,12 @@ public class MainWindowController {
 
     @FXML
     void initialize() {
-        labelProfile.setText(Sesion.getSesionUser().getLogin());
-        TreeItem<String> root = new TreeItem<String>("Товары");
+        labelProfile.setText(Sesion.getSesionUser().getLogin());  //Вывод текущей сессии
+        TreeItem<String> root = new TreeItem<String>("Товары"); // Создание каталога товарова
         TreeItem<String> electronics = new TreeItem<String>("Бытовая техника");
         TreeItem<String> food = new TreeItem<String>("Продукты питания");
         TreeItem<String> clothing = new TreeItem<String>("Одежда");
+        root.setExpanded(true);
         root.getChildren().add(electronics);
         root.getChildren().add(food);
         root.getChildren().add(clothing);
@@ -81,22 +82,22 @@ public class MainWindowController {
             }
         }
 
-        treeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showProductDetails(newValue));
+        treeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showProductDetails(newValue)); //Создаём слушателя который смотрит выбор пользователя
 
-        labelProfile.setOnAction(event -> {
+        labelProfile.setOnAction(event -> { // При нажатии на ссылку профиля переход на окно профиля
             main.openNewScene("/sample/view/ProfileWindow.fxml");
         });
-        buttonProfile.setOnAction(event -> {
+        buttonProfile.setOnAction(event -> { // При нажатии на кнопку профиля переход на окно профиля
             main.openNewScene("/sample/view/ProfileWindow.fxml");
         });
-        buttonBasket.setOnAction(event -> {
+        buttonBasket.setOnAction(event -> { //Добавление товара в корзину
             addBasket();
         });
 
 
     }
 
-    private void showProductDetails(TreeItem<String> string) {
+    private void showProductDetails(TreeItem<String> string) { //Отображение информации о товаре
         for (Product product : listProduct) {
             if (product.getName().equals(string.getValue())) {
                 labelNameProduct.setText(product.getName());
@@ -113,7 +114,7 @@ public class MainWindowController {
     }
 
     @FXML
-    private void addBasket(){
+    private void addBasket(){ // Добавление товара в корзину
         TreeItem<String> selectedIndex = treeView.getSelectionModel().getSelectedItem();
         if (!selectedIndex.getValue().isEmpty()){
             for (Product product:listProduct){
