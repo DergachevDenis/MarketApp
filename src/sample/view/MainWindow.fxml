@@ -79,7 +79,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Button fx:id="buttonBuy" layoutX="274.0" layoutY="254.0" mnemonicParsing="false" text="Купить" visible="false">
+                  <Button fx:id="buttonBuy" layoutX="274.0" layoutY="254.0" mnemonicParsing="false" onAction="#handleBuy" text="Купить" visible="false">
                      <font>
                         <Font size="15.0" />
                      </font>

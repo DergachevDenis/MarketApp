@@ -5,7 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sample.controller.BuyWindowController;
+import sample.model.Product.Product;
 
 import java.io.IOException;
 
@@ -40,6 +44,36 @@ public class Main extends Application {
         stage.getIcons().add(new Image("file:icon_shop.png"));
         stage.showAndWait();
     }
+
+    public boolean showBuyWindow(Product product){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/sample/view/BuyWindow.fxml"));
+            BorderPane pane = (BorderPane) loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Buy Window");
+            dialogStage.getIcons().add(new Image("file:icon_shop.png"));
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(pane);
+            dialogStage.setScene(scene);
+
+            BuyWindowController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setProduct(product);
+
+            dialogStage.showAndWait();
+
+            return controller.isOkClicked();
+
+        }
+        catch (IOException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
     public Stage getPrimaryStage(){ //возвращает главную сцену
         return primaryStage;

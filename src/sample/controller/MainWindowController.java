@@ -97,6 +97,27 @@ public class MainWindowController {
 
     }
 
+    @FXML
+    private void handleBuy() {
+        TreeItem<String> selectedIndex = treeView.getSelectionModel().getSelectedItem();
+        if (!selectedIndex.getValue().isEmpty()) {
+            for (Product product : listProduct) {
+                if (product.getName().equals(selectedIndex.getValue())) {
+                    main.showBuyWindow(product);
+                    break;
+                }
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(main.getPrimaryStage());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Product Selected");
+            alert.setHeaderText("No Product Selected");
+            alert.setContentText("Please select a Product in the table.");
+            alert.showAndWait();
+        }
+    }
+
     private void showProductDetails(TreeItem<String> string) { //Отображение информации о товаре
         for (Product product : listProduct) {
             if (product.getName().equals(string.getValue())) {
@@ -114,10 +135,10 @@ public class MainWindowController {
     }
 
     @FXML
-    private void addBasket(){ // Добавление товара в корзину
+    private void addBasket() { // Добавление товара в корзину
         TreeItem<String> selectedIndex = treeView.getSelectionModel().getSelectedItem();
-        if (!selectedIndex.getValue().isEmpty()){
-            for (Product product:listProduct){
+        if (!selectedIndex.getValue().isEmpty()) {
+            for (Product product : listProduct) {
                 if (product.getName().equals(selectedIndex.getValue())) {
                     Sesion.addProductBasket(product);
                     System.out.println("Продукт добавлен в корзину");
@@ -125,8 +146,7 @@ public class MainWindowController {
                     break;
                 }
             }
-        }
-        else {
+        } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(main.getPrimaryStage());
             alert.setTitle("No Selection");
