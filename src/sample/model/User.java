@@ -6,7 +6,7 @@ import java.nio.charset.StandardCharsets;
 public class User implements Serializable {
     private String key = "meow";
     private String login;
-    private byte[] password;
+    private int password;
     private String name;
     private String lastName;
     private String email;
@@ -15,7 +15,7 @@ public class User implements Serializable {
 
     public User(String login, String password, String name, String lastName, String email,String numberCard) {
         this.login = login;
-        this.password=encode(password);
+        this.password=password.hashCode();
         this.name=name;
         this.lastName=lastName;
         this.email=email;
@@ -25,7 +25,7 @@ public class User implements Serializable {
     }
     public User(String login, String password, String name, String lastName, String email) {
         this.login = login;
-        this.password=encode(password);
+        this.password=password.hashCode();
         this.name=name;
         this.lastName=lastName;
         this.email=email;
@@ -46,19 +46,6 @@ public class User implements Serializable {
         return decode(this.numberCard);
     }
 
-    public String seeNumberCard() {
-        String numberCard = decode(this.numberCard);
-        if(isCard()){
-        String see="";
-        for (int i = numberCard.length()-4; i < numberCard.length(); i++) {
-            see=see+numberCard.charAt(i);
-        }
-        String seeNumberCard = "**** **** **** "+see;
-        return seeNumberCard;}
-        else {
-            return "NumberCard не указана";
-        }
-    }
 
     public void setNumberCard(String numberCard) {
         this.numberCard = encode(numberCard);;
@@ -68,16 +55,12 @@ public class User implements Serializable {
         return login;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return decode(this.password);
+    public int getPassword() {
+        return this.password;
     }
 
     public void setPassword(String password) {
-        this.password = encode(password);
+        this.password = password.hashCode();
     }
 
     public String getName() {

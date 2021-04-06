@@ -92,7 +92,7 @@ public class UserDB {
         try {
             PreparedStatement prStatement = getDbConnection().prepareStatement(sqlCommand);
             prStatement.setString(1, newUser.getLogin());
-            prStatement.setString(2, newUser.getPassword());
+            prStatement.setInt(2, newUser.getPassword());
             prStatement.setString(3, newUser.getName());
             prStatement.setString(4, newUser.getLastName());
             prStatement.setString(5, newUser.getEmail());
@@ -116,7 +116,7 @@ public class UserDB {
         String sqlCommand = "UPDATE users SET password = ?, name = ?, lastName = ?, email = ?, card = ?, numberCard = ? where login = ?";
         try {
             PreparedStatement prStatement = getDbConnection().prepareStatement(sqlCommand);
-            prStatement.setString(1, user.getPassword());
+            prStatement.setInt(1, user.getPassword());
             prStatement.setString(2, user.getName());
             prStatement.setString(3, user.getLastName());
             prStatement.setString(4, user.getEmail());

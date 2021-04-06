@@ -9,9 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import sample.animation.Shake;
 import sample.model.Product.Product;
-import sample.model.Sesion;
+import sample.model.Session;
 
 public class BuyWindowController {
 
@@ -62,8 +61,8 @@ public class BuyWindowController {
         this.product = product;
         labelNameProduct.setText(product.getName());
 
-        if(Sesion.getSesionUser().isCard()){
-            String numberCard = Sesion.getSesionUser().getNumberCard();
+        if(Session.getSesionUser().isCard()){
+            String numberCard = Session.getSesionUser().getNumberCard();
             textFieldNumCard1.setText(numberCard.substring(0, 4));
             textFieldNumCard2.setText(numberCard.substring(4, 8));
             textFieldNumCard3.setText(numberCard.substring(8, 12));
@@ -92,8 +91,8 @@ public class BuyWindowController {
             alert.setContentText("Товар куплен! Удачного дня");
             alert.showAndWait();
             System.out.println(product.getName());
-            if (Sesion.getProductBasket().contains(product)){
-                Sesion.getProductBasket().remove(product);
+            if (Session.getProductBasket().contains(product)){
+                Session.getProductBasket().remove(product);
             }
             dialogStage.close();
         }

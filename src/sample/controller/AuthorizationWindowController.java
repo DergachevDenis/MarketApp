@@ -9,7 +9,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import sample.Main;
 import sample.animation.Shake;
-import sample.model.Sesion;
+import sample.model.Session;
 import sample.storage.UserDB;
 
 public class AuthorizationWindowController {
@@ -47,7 +47,7 @@ public class AuthorizationWindowController {
     private void authorization() {  //Проверка на соотвествие данных авторизации и переход в главное меню
         if (isInputValid()) {
             String login = textFieldLogin.getText();
-            Sesion sesion = new Sesion(userDB.getUser(login));
+            Session session = new Session(userDB.getUser(login));
             buttonAuthorization.getScene().getWindow().hide();
             main.openNewScene("/sample/view/MainWindow.fxml");
 
@@ -66,7 +66,7 @@ public class AuthorizationWindowController {
                 shake = new Shake((textFieldPassword));
                 shake.playAnimation();
                 flag = false;
-            } else if (userDB.getUser(textFieldLogin.getText()).getPassword().equals(textFieldPassword.getText().trim())) {
+            } else if (userDB.getUser(textFieldLogin.getText()).getPassword()==(textFieldPassword.getText().trim().hashCode())) {
                 return flag;
             } else {
                 textFieldLogin.setStyle("-fx-border-color: red");

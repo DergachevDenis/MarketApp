@@ -6,20 +6,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import sample.model.Product.Product;
 
-public class Sesion {
+public class Session {
     private static User sesionUser = null; // Пользователь текущей сессии
     private static ObservableList<Product> productBasket = FXCollections.observableArrayList(); //Козина, в виде наблюдаемого списка продуктов
 
-    public Sesion(User sesionUser) {
+    public Session(User sesionUser) {
         this.sesionUser = sesionUser;
     }
 
     public static User getSesionUser() {
-        return Sesion.sesionUser;
+        return Session.sesionUser;
     }
 
     public static void setSesionUser(User sesionUser) {
-        Sesion.sesionUser = sesionUser;
+        Session.sesionUser = sesionUser;
     }
 
     public static void addProductBasket(Product product) {

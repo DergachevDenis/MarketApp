@@ -3,15 +3,11 @@ package sample.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import sample.Main;
 import sample.model.Product.Product;
-import sample.model.Sesion;
+import sample.model.Session;
 
 public class ProfileWindowController {
     Main main = new Main();
@@ -57,15 +53,15 @@ public class ProfileWindowController {
     }
 
     public void initializeProfile() {
-        listView.setItems(Sesion.getProductBasket()); // Отображения товаров в корзине
-        profileLabel.setText(Sesion.getSesionUser().getLogin()); // Вывод информации о пользователе в текущей сессии
-        firstNameLabel.setText(Sesion.getSesionUser().getName());
-        lastNameLabel.setText(Sesion.getSesionUser().getLastName());
-        emailLabel.setText(Sesion.getSesionUser().getEmail());
-        if (Sesion.getSesionUser().isCard()) {
+        listView.setItems(Session.getProductBasket()); // Отображения товаров в корзине
+        profileLabel.setText(Session.getSesionUser().getLogin()); // Вывод информации о пользователе в текущей сессии
+        firstNameLabel.setText(Session.getSesionUser().getName());
+        lastNameLabel.setText(Session.getSesionUser().getLastName());
+        emailLabel.setText(Session.getSesionUser().getEmail());
+        if (Session.getSesionUser().isCard()) {
             String see = "";
-            for (int i = Sesion.getSesionUser().getNumberCard().length() - 4; i < Sesion.getSesionUser().getNumberCard().length(); i++) {
-                see = see + Sesion.getSesionUser().getNumberCard().charAt(i);
+            for (int i = Session.getSesionUser().getNumberCard().length() - 4; i < Session.getSesionUser().getNumberCard().length(); i++) {
+                see = see + Session.getSesionUser().getNumberCard().charAt(i);
             }
             String numberCard = "**** **** **** " + see;
             numberCardLabel.setText(numberCard);

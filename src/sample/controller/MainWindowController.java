@@ -14,7 +14,7 @@ import sample.model.Product.Clothing;
 import sample.model.Product.Electronics;
 import sample.model.Product.Food;
 import sample.model.Product.Product;
-import sample.model.Sesion;
+import sample.model.Session;
 import sample.storage.ProductStorage;
 
 
@@ -57,7 +57,7 @@ public class MainWindowController {
 
     @FXML
     void initialize() {
-        labelProfile.setText(Sesion.getSesionUser().getLogin());  //Вывод текущей сессии
+        labelProfile.setText(Session.getSesionUser().getLogin());  //Вывод текущей сессии
         TreeItem<String> root = new TreeItem<String>("Товары"); // Создание каталога товарова
         TreeItem<String> electronics = new TreeItem<String>("Бытовая техника");
         TreeItem<String> food = new TreeItem<String>("Продукты питания");
@@ -140,9 +140,9 @@ public class MainWindowController {
         if (!selectedIndex.getValue().isEmpty()) {
             for (Product product : listProduct) {
                 if (product.getName().equals(selectedIndex.getValue())) {
-                    Sesion.addProductBasket(product);
+                    Session.addProductBasket(product);
                     System.out.println("Продукт добавлен в корзину");
-                    System.out.println(Sesion.getProductBasket().size());
+                    System.out.println(Session.getProductBasket().size());
                     break;
                 }
             }

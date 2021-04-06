@@ -11,8 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import sample.Main;
 import sample.animation.Shake;
-import sample.model.Sesion;
-import sample.model.User;
+import sample.model.Session;
 import sample.storage.UserDB;
 
 public class EditProfileWindowController {
@@ -65,14 +64,14 @@ public class EditProfileWindowController {
 
     @FXML
     void initialize() {
-        textFieldFirstName.setText(Sesion.getSesionUser().getName());
-        textFieldLastName.setText(Sesion.getSesionUser().getLastName());
-        textFieldPassword.setText(Sesion.getSesionUser().getPassword());
+        textFieldFirstName.setText(Session.getSesionUser().getName());
+        textFieldLastName.setText(Session.getSesionUser().getLastName());
+        textFieldPassword.setText(Integer.toString(Session.getSesionUser().getPassword()));
         textFieldPassword.setPromptText("Повторите пароль");
-        textFieldEmail.setText(Sesion.getSesionUser().getEmail());
-        if (Sesion.getSesionUser().isCard()) {
+        textFieldEmail.setText(Session.getSesionUser().getEmail());
+        if (Session.getSesionUser().isCard()) {
             checkBoxRememberCard.setSelected(true);
-            String numberCard = Sesion.getSesionUser().getNumberCard();
+            String numberCard = Session.getSesionUser().getNumberCard();
             textFieldNumCard1.setText(numberCard.substring(0, 4));
             textFieldNumCard2.setText(numberCard.substring(4, 8));
             textFieldNumCard3.setText(numberCard.substring(8, 12));
@@ -92,21 +91,21 @@ public class EditProfileWindowController {
 
     public void editUser() { // изменение и переход в главное меню
         if (isInputValid()) {
-            Sesion.getSesionUser().setName(textFieldFirstName.getText().trim());
-            Sesion.getSesionUser().setLastName(textFieldLastName.getText().trim());
-            Sesion.getSesionUser().setPassword(textFieldPassword.getText().trim());
-            Sesion.getSesionUser().setEmail(textFieldEmail.getText().trim());
+            Session.getSesionUser().setName(textFieldFirstName.getText().trim());
+            Session.getSesionUser().setLastName(textFieldLastName.getText().trim());
+            Session.getSesionUser().setPassword(textFieldPassword.getText().trim());
+            Session.getSesionUser().setEmail(textFieldEmail.getText().trim());
             if (checkBoxRememberCard.isSelected()) {
                 StringBuilder stringBuilder = new StringBuilder(20);
                 String numberCard = stringBuilder.append(textFieldNumCard1.getText()).append(textFieldNumCard2.getText())
                         .append(textFieldNumCard3.getText()).append(textFieldNumCard4.getText()).toString();
-                Sesion.getSesionUser().setCard(true);
-                Sesion.getSesionUser().setNumberCard(numberCard);
+                Session.getSesionUser().setCard(true);
+                Session.getSesionUser().setNumberCard(numberCard);
 
             } else {
-                Sesion.getSesionUser().setCard(false);
+                Session.getSesionUser().setCard(false);
             }
-            userDB.updateUser(Sesion.getSesionUser());
+            userDB.updateUser(Session.getSesionUser());
             System.out.println("Пользователь изменён");
 //            main.openNewScene("/sample/view/ProfileWindow.fxml");
             buttonRegistration.getScene().getWindow().hide();
