@@ -68,7 +68,7 @@ public class ProfileWindowController {
         } else {
             numberCardLabel.setVisible(false);
         }
-        //listView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> handleBuy(newValue));
+
     }
 
     @FXML

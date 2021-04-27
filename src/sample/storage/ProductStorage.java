@@ -52,24 +52,4 @@ public class ProductStorage {
         }
     }
 
-//    public static void main(String[] args) {
-//        ProductStorage productStorage = new ProductStorage();
-//        ArrayList<Product> productList = productStorage.getProductArrayList();
-////        ArrayList<Product> productList = new ArrayList<Product>();
-//        System.out.println(productList.size());
-//        TV tv = new TV("Samsung T500","124.56","Samsung","1000W",220,2.5);
-//        TV tv1 = new TV("Sony k33","456","Sony", "90W",225,9 );
-//        Blender blender = new Blender("Piston","78","Integral","30W", 220,250);
-//        Tie tie = new Tie("Галстук","41","Купалинка","red", "M");
-//        Bread bread = new Bread("Хлеб ржаной", "1", "Хлебозавод №1","Мука ржаная, солод, сахар," +
-//                " героин","07.11.1917",1000);
-//        productList.add(tv);
-//        productList.add(tv1);
-//        productList.add(blender);
-//        productList.add(tie);
-//        productList.add(bread);
-//        System.out.println(productList.size());
-//        productStorage.writeProductList(productList);
-//    }
-
 }

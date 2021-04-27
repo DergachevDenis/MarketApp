@@ -11,11 +11,6 @@ public class UserDB {
     private static String connectionURLDB = "jdbc:mysql://localhost:3306/dbinternetmarket?serverTimezone=Europe/Moscow&useSSL=false";
     private static Connection dbConnection;
 
-//    public static void main(String[] args) {
-//        UserDB userDB = new UserDB();
-//        System.out.println(userDB.checkLogin("TIFik"));
-//    }
-
     private Connection getDbConnection() { // Подключаемся к базе данных
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
